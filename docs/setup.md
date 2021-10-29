@@ -4,7 +4,7 @@
 
 ```
 terraform validate && terraform fmt && terraform plan
-terraform apply -auto-approve
+terraform apply after-stop -auto-approve
 ```
 
 Stop all service

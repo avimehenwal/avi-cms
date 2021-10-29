@@ -20,12 +20,12 @@ resource "docker_image" "pgadmin4" {
   name = "thajeztah/pgadmin4:latest"
 }
 
+resource "docker_volume" "postgres-data" {
+  name = "cmsdb-postgres-data"
+}
 resource "docker_container" "postgres" {
   image = docker_image.postgres.latest
   name  = var.database_name
-  # tty    = true
-  # attach = true
-  # rm = true
   ports {
     internal = 5432
     external = 5432
@@ -33,12 +33,18 @@ resource "docker_container" "postgres" {
   }
   # env = ["POSTGRES_USER=testuser", "POSTGRES_PASSWORD=ppppp", "POSTGRES_DB=skilldb"]
   env = ["POSTGRES_PASSWORD=ppppp"]
+
+  # persist data on local disk
+  volumes {
+    volume_name    = docker_volume.postgres-data.name
+    container_path = "/var/lib/postgresql/data"
+  }
+
 }
 
 resource "docker_container" "pgadmin4" {
   image = docker_image.pgadmin4.latest
   name  = var.db_gui_name
-  rm    = true
   ports {
     internal = 5050
     external = 5050
