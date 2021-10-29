@@ -17,3 +17,5 @@ pip install psycopg2
 python manage.py migrate --database=cloudsql
 Author.objects.using('other').all()
 ```
+
+## graphQL > REST-API
