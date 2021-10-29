@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "rdbms",
-    "tf"
+    "tf",
+    "django"
   ]
 }
