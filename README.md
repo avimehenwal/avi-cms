@@ -2,6 +2,13 @@
 
 > content is also data, put it in database
 
+:newspaper: Multi-channel Publishing using same logically linked data
+
+- same content could be consumed by different [markup languages](https://en.wikipedia.org/wiki/Markup_language) to produce different result/products
+- store data using STANDARDIZED methods in STANDARDIZED ways
+
+![Multichannel CMS](assets/img/Multichannel-CMS.jpg)
+
 #### :v: Get in touch with me
 
 > I am looking for Jobs ... :sunglasses:

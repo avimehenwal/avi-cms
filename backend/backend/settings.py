@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',       # Required for GraphiQL
+
+    # enhancements
     "graphene_django",
+    'debug_toolbar',
 
     # user apps
     "ingredients",
@@ -50,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -135,3 +139,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GRAPHENE = {
     "SCHEMA": "backend.schema.schema"
 }
+
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
+]

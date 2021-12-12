@@ -3,7 +3,7 @@
 ## Local development Environment
 
 ```
-terraform validate && terraform fmt && terraform plan
+terraform validate && terraform fmt -check && terraform plan
 terraform apply after-stop -auto-approve
 ```
 
