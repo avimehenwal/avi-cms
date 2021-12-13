@@ -34,3 +34,16 @@ psql --host=localhost --port=5432 --username=postgres
 - [ ] Emails servers/service
 
 - Use buster image (350MB) has more built in dependencies and more prebuilt wheels than slim
+- [12 Factor](https://www.12factor.net/)
+
+## Deployment Issues
+
+How to pass secrets as environment to docker image to run?
+
+`--set-env-vars ENDPOINTS_SERVICE_NAME=ivy-gcr-7jgvnh5pma-uc.a.run.app OTHER=secret`
+
+How to read the secrets inside running container?
+
+- use sed to escape dollar signs
+- sed regex how to
+- ask make to run a bash command

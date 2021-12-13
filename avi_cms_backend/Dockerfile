@@ -5,6 +5,7 @@ WORKDIR $APP_HOME
 
 # Removes output stream buffering, allowing for more efficient logging
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
 
 # Install dependencies
 COPY requirements.txt .

@@ -1,9 +1,11 @@
 include .env
 export
+SHELL = /bin/zsh
 PY_DEP_FILE = requirements.txt
 DJANGO = python manage.py
 SERVICE_NAME = cms-backend
 image_name = avi/${SERVICE_NAME}
+READ_ENV_VARS := $(shell grep -v '^\#' .env | sed '/^$$/d' | sed 's/^/--set-env-vars="/' | sed 's#$$#" ##')
 
 migrate:
 	${DJANGO} makemigrations && ${DJANGO} migrate
@@ -11,6 +13,9 @@ migrate:
 
 dev: migrate
 	${DJANGO} runserver
+
+prod-run:
+	gunicorn --workers 4 --bind 0.0.0.0:8000 avi_cms_backend.wsgi
 
 freeze:
 	@pip freeze > ${PY_DEP_FILE}
@@ -34,4 +39,16 @@ setup:
 	@gcloud config set run/platform managed
 
 deploy: setup
-	gcloud run deploy ${SERVICE_NAME} --allow-unauthenticated --source .
+	gcloud run deploy ${SERVICE_NAME} --port=${GCP_RUN_PORT} \
+		${READ_ENV_VARS} \
+		--allow-unauthenticated --source .
+# --set-cloudsql-instances
+
+submit: setup
+	gcloud builds submit --tag gcr.io/${GCP_PROJECT}/django_on_cloudrun
+
+env:
+	$(grep -v '^#' .env | xargs)
+
+test:
+	echo ${READ_ENV_VARS}

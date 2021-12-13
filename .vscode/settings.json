@@ -3,6 +3,7 @@
     "rdbms",
     "tf",
     "django",
-    "gql"
+    "gql",
+    "gcp"
   ]
 }
